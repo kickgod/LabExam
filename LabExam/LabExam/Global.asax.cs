@@ -21,7 +21,8 @@ namespace LabExam
             kernel.Load(Assembly.GetExecutingAssembly());
             return kernel;
         }
-        protected override void OnApplicationStarted()
+
+	protected override void OnApplicationStarted()
         {
             base.OnApplicationStarted();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(CreateKernel()));
@@ -33,3 +34,7 @@ namespace LabExam
         }
     }
 }
+
+
+
+
