@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/Mycss")
+    <link rel="icon" href="~/Resources/Image/Icon/PageIconOnline.png" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header class="navbar  navbar-top">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <span class="logo-font">SICNUlE</span>
+            </div>
+            <div class="navbar-nav float-layout">
+                <nav class="navbar-nav-list">
+                    @Html.ActionLink("首页", "Index", "Home")
+                    @Html.ActionLink("考试说明", "Explanation", "Home")
+                    @Html.ActionLink("使用帮助", "UserHelping", "Home")
+                    <a href="#">投诉建议</a>
+                    <a href="#">立即登录</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <div class="bc-grey">
+        <div class="main text-left font-color-grey-little">
+            <small>© All Right Reserved . 四川师范大学计算机科学学院 版权所有 版本号1.0.0.2018.9</small>
+        </div>
+    </div>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/myScript")
+@RenderSection("scripts", required: false)
+</html>

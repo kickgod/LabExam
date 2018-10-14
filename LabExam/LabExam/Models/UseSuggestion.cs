@@ -22,8 +22,9 @@ namespace LabExam.Models
         public DateTime AddTime { get; set; } //添加时间
 
         [MaxLength(50)]
-        public String QQNumber { get; set; } //QQ号
+        public String ContactType { get; set; } //联系方式
 
-
+        [MaxLength(300)]
+        public string Title { get; set; } //主题
     }
 }

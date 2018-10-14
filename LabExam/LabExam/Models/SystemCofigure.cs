@@ -17,9 +17,6 @@ namespace LabExam.Models
         {
             ModuleConfigures = ModuleList;
         }
-
-        public String ContactNumber { get; set; } //技术 联系人1姓名-电话
-        public String ContactNumber1 { get; set; } //技术 联系人2姓名-电话 
         public DateTime? ExamEndTime { get; set; } //考试结束时间
         public Boolean? IsAutoAgreeReExaminationApplication { get; set; } //是否自动同意学生对于重考的申请
     }
