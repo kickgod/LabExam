@@ -231,8 +231,12 @@
     <Compile Include="Migrations\201810180142184_UserChangeTable.Designer.cs">
       <DependentUpon>201810180142184_UserChangeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810181314074_ChangeTableName.cs" />
+    <Compile Include="Migrations\201810181314074_ChangeTableName.Designer.cs">
+      <DependentUpon>201810181314074_ChangeTableName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AdministratorOperationLog.cs" />
+    <Compile Include="Models\PrincipalOperationLog.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\DataModel\UserAccout.cs" />
     <Compile Include="Models\ExaminationPaper.cs" />
@@ -357,6 +361,7 @@
     <Content Include="Views\SystemConfiguration\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\HaveLogin.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810180142184_UserChangeTable.resx">
       <DependentUpon>201810180142184_UserChangeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181314074_ChangeTableName.resx">
+      <DependentUpon>201810181314074_ChangeTableName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

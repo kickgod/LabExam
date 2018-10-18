@@ -237,3 +237,4 @@ D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.LittleChange001.resources
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.ChangeTables.resources
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.UserChangeTable.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.ChangeTableName.resources

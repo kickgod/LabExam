@@ -35,9 +35,9 @@ namespace LabExam.Map
 
         public DbSet<UserLoginRecord> UserLoginRecords { get; set; }               // 记录用户登录信息
 
-        public DbSet<StudentOperationLog> StudentOperationLogs { get; set; }       // 学生操作信息表
+        public DbSet<PrincipalOperationLog> PrincipalOperationLoggs { get; set; } //管理员操作信息
 
-        public DbSet<AdministratorOperationLog> AdministratorOperationLogs { get; set; } //管理员操作信息
+        public DbSet<StudentOperationLog> StudentOperationLogs { get; set; }       // 学生操作信息表
 
         public DbSet<ExamQuestionChoice> ExamQuestionChoices { get; set; }          //选择题
         public DbSet<ExamQuestionJudgmental> ExamQuestionJudgmentals { get; set; }  //判断题

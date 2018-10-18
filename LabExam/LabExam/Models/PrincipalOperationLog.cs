@@ -7,11 +7,11 @@ using System.Web;
 
 namespace LabExam.Models
 {
-    [Table("AdministratorOperationLogs")]
-    public class AdministratorOperationLog
+    [Table("PrincipalOperationLogs")]
+    public class PrincipalOperationLog
     {
         [Key]
-        public int KeyID { get; set; }  //主键
+        public int PrincipalLogID { get; set; }  //主键
         [MaxLength(15)]
         public String OperationCode { get; set; }  //增删改查
         [MaxLength(50)]

@@ -18,12 +18,17 @@ namespace LabExam.Services
         /* 修改用户密码 */
         public bool ChangeUserPassword(UserAccout account, UserType userType)
         {
+            if (userType == UserType.Principal) {
+                
+            }
             throw new NotImplementedException();
         }
+
         public  Boolean StudentIsRight()
         {
             throw new NotImplementedException();
         }
+
         public Boolean PrincipalIsRight()
         {
             throw new NotImplementedException();
