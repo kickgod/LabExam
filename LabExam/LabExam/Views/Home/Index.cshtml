@@ -2,41 +2,6 @@
     ViewBag.Title = "实验室安全教育在线-首页";
     Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
-<style>
-    .text-title-little {
-        font-size: 16px;
-    }
-
-        .text-title-little + small {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-    figcaption {
-        padding: 10px;
-    }
-
-    .exam-notice img {
-        border-radius: 50%;
-        padding: 3px;
-        border: 1px solid rgba(38, 38, 38, 0.2);
-        transition-timing-function: ease-in;
-        -webkit-transition-timing-function: ease-in;
-        -moz-transition-timing-function: ease-in;
-        transition-duration: 1000ms;
-        transition-property: all;
-    }
-
-        .exam-notice img:hover {
-            transform: scale(1.1, 1.1) rotate(360deg);
-        }
-
-    .exam-notice figure:hover small {
-        font-weight: 300;
-        color: rgba(38, 38, 38, 0.99);
-        text-decoration: underline;
-    }
-</style>
 <div class="jumbotron">
     <div class="jumbotron-content">
         <h1 class="title">
@@ -129,33 +94,7 @@
     </div>
 </div>
 
-<div class="bc-grey padding-bottom-15">
-    <div class="main flex-bc-grey">
-        <h4 class="title-module-left-grey padding-top-15px" style="color:white">快速帮助联系:</h4>
-    </div>
-    <div class="mian-content float-layout">
-        <div class="float-left">
-            <span class="font-color-grey-little font-size-sm">
-                项目总协调人 杨立成 （电话：84760096；  QQ:549841013）
-            </span>
-        </div>
-        <div class="float-right">
-            <span class="font-color-grey-little font-size-sm">技术维护人员  刘闵川（电话：14726679805 QQ：724119519）</span>
-        </div>
-    </div>
-    <div class="mian-content float-layout">
-        <div class="float-left">
-            <span class="font-color-grey-little font-size-sm">
-                安全与环境管理科 黄海（电话： 84767565）王春（电话：13699005825）
-            </span>
-        </div>
-        <div class="float-right">
-            <span class="font-color-grey-little font-size-sm">
-                技术维护人员  蒋星（ 电话：17721953180  QQ：1427035242）
-            </span>
-        </div>
-    </div>
-</div>
+
 <script src="~/Scripts/ECharts/echarts.min.js"></script>
 <script src="~/Scripts/ECharts/macarons.js"></script>
 @section scripts{

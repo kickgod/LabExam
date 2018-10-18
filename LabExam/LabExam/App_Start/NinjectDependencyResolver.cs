@@ -28,8 +28,9 @@ namespace LabExam.App_Start
         }
         private void AddBindings()
         {
-            kernel.Bind<IPrincipalService>().To<PrincipalService>().InTransientScope(); //配置接口
-            kernel.Bind<IEncryptionData>().To<EncryptionDataByMd5>().InTransientScope(); //配置接口
+            kernel.Bind<IUserAccountService>().To<UserAccountService>().InTransientScope(); //配置接口
+            kernel.Bind<IEncryptionDataService>().To<EncryptionDataService>().InTransientScope(); //配置接口
+            kernel.Bind<IUserSuggestionService>().To<UserSuggestionService>().InTransientScope();
         }
     }
 }

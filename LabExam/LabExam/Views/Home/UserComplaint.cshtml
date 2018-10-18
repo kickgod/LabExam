@@ -1,0 +1,113 @@
+﻿@model LabExam.Models.UserSuggestion
+
+@{
+    ViewBag.Title = "实验室安全教育在线-投诉建议";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+<div class="jumbotron">
+    <div class="jumbotron-content">
+        <h1 class="title">
+            Thank you for your complaints and suggestions to help us provide better service.
+            <br>
+            <small>感谢你的投诉建议帮助我们提供更好的服务 </small>
+        </h1>
+        <button class="btn btn-default">已经处理投诉:15件</button>
+    </div>
+</div>
+<div class="main">
+    @using (Html.BeginForm("UserComplaint", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class=" form-group">
+            <label>
+                你的联系方式:
+            </label>
+            <select class="form-select-N-help-contactWay" name="ContactType" id="ContactType">
+                <option value="电话" selected>电话</option>
+                <option value="邮件">邮件</option>
+                <option value="QQ">QQ</option>
+                <option value="微信">微信</option>
+            </select>
+            <input class="form-textbox-N-help-contact" type="text" placeholder="请填写联系方式" name="Contact" id="Contact" />
+        </div>
+        <div class="form-group">
+            <label>
+                简要描述主题:
+            </label>
+            <input type="text" class="form-textbox-N-help-contact" placeholder="主题" name="Title" id="Title" />
+        </div>
+        <div class="form-group">
+            <textarea style="width:100%;height:300px;" class=" font-size-16" id="Description" name="Description">
+
+    </textarea>
+        </div>
+        <div class=" margin-bottom-50px float-layout ">
+            <small>非常感谢你的建议！</small>
+            <button type="submit" class="float-right form-submit form-submit-info"  >立即投诉</button>
+        </div>
+
+    }
+</div>
+<div class="mask" data-mask-target="#mask-info">
+</div>
+<div id="mask-info" class=" mask-content">
+    <div class="mask-module-title">
+        消息提示！
+    </div>
+    <div class="mask-module-content">
+        填写
+    </div>
+    <div class="mask-module-close">
+        <button class=" btn btn-danger layout-image-center"> 立即关闭</button>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function onMask(title, content) {
+            var target = $(".mask").css("display", "block").attr('data-mask-target');
+            $(target).css("display", "block");
+            $(`${target} > .mask-module-title`).text(title);
+            $(`${target} > .mask-module-content`).text(content);
+        }
+
+        $('button[type="submit"]').on("click", null, null, function (jqEvent) {
+            if ($('#Description').val().trim() == "") {
+                onMask('消息提示', "请填写你的投诉或者建议的内容请不要只写空格！");
+                jqEvent.preventDefault();
+                return;
+            };
+            $.ajax({
+                type: "Post",
+                url: "/Home/UserComplaint",
+                data: {
+                    "Contact": $('#Contact').val(),
+                    "ContactType": $('#ContactType option:selected').val(),
+                    "Title": $('#Title').val(),
+                    "Description": $('#Description').val()
+                },
+                beforeSend: function () {
+                    $('button[type="submit"]').prop('disabled', true);
+                    $('button[type="submit"]').removeClass('form-submit-info');
+                },
+                success: function () {
+                    onMask('提交成功', "非常感谢来自于你的建议,我们将以此为基础提供更好的服务！");
+                    $('#ContactType').val("");
+                    $('#Title').val("");
+                    $('#Description').val("");
+                    $('button[type="submit"]').prop('disabled', false);
+                    $('button[type="submit"]').addClass('form-submit-info');
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    onMask('请求错误', "服务器没有及时处理你的请求,或者拒绝了你的请求！");
+                    $('button[type="submit"]').prop('disabled', false);
+                    $('button[type="submit"]').addClass('form-submit-info');
+                },
+                timeout:3000
+            });
+            jqEvent.preventDefault();
+        });
+    </script>
+
+}

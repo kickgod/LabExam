@@ -13,7 +13,7 @@ namespace LabExam.Models
     ///  <Author> 2016110418 蒋星 </Author>
     ///  <LastAlterTimeAndAuthor>  </LastAlterTimeAndAuthor>
     /// </summary>
-    [Table("Resources")]
+    [Table("UserLoginRecords")]
     public class UserLoginRecord
     {
         [Key]

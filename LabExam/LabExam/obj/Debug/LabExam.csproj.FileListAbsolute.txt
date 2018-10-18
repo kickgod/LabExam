@@ -232,3 +232,9 @@ D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.csproj.Core
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.csproj.CopyComplete
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.dll
 D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.pdb
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.ChangeManyTables.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.LittleChange.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.LittleChange001.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.ChangeTables.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.UserChangeTable.resources
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam\obj\Debug\LabExam.Migrations.ChangeTableName.resources

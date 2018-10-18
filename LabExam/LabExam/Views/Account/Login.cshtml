@@ -1,0 +1,182 @@
+﻿@model LabExam.Models.DataModel.UserAccout
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="~/Resources/Image/Icon/PageIconOnline.png" />
+    <link rel="stylesheet" href="~/Content/css/labEntry.min.css" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/App/labLayout.js"></script>
+    <title>实验室安全教育在线-登陆</title>
+    <style>
+        #Login {
+            width: 600px;
+            height: 410px;
+        }
+
+        .mask-content {
+            width: 600px;
+        }
+        a {
+            color: cornflowerblue;
+        }
+        a:hover {
+            color: darkblue;
+            font-weight: 600;
+        }
+        .text-danger {
+            font-size:14px;
+            color:red;
+        }
+        .panel-warnning {
+            display: block;
+            background-color: RGB(242,222,223);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+
+        }
+        .panel-warnning > .waring-font {
+            font-size: 14px;
+            color: RGB(172,70,68);
+        }
+
+       
+    </style>
+</head>
+<body class="bc-clr-grey-little">
+    <div id="Login" class="border-thumali bc-clr-white  layout-center  padding-15 box-sizing-include-padding-border">
+        <div>
+            <img src="../Resources/Img/run.png" class="layout-image-center img-hover-func" width="64" />
+        </div>
+        <div class=" text-center margin-top-10px font-color-grey-more">
+            四川师范大学安全教育在线
+        </div>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group flex-layout flex-direction-row flex-wrap-nowrap">
+                <div class="flex-item-2">
+                    <img src="../Resources/LoginIcon/ID_NO_Lanse.png" width="40" class="layout-image-right">
+                </div>
+                <div class="flex-item-8 margin-left-30px">
+                    @Html.EditorFor(model => model.UserAccoutID, new { htmlAttributes = new { @class = "textBox text-indent-15px", placeholder = "请输入账号" } })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.UserAccoutID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group flex-layout flex-direction-row flex-wrap-nowrap">
+                <div class="flex-item-2">
+                    <img src="../Resources/LoginIcon/password.png" width="38" class="layout-image-right">
+                </div>
+                <div class="flex-item-8 margin-left-30px">
+                    @Html.PasswordFor(model => model.UserPassword, new { @class = "textBox text-indent-15px", placeholder = "请输入密码" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group flex-layout flex-direction-row flex-wrap-nowrap ">
+                <div class="flex-item-2">
+
+                </div>
+                <div class="flex-item-8 margin-left-30px padding-left-10px">
+                    <input id="num1" type="text" value="5" class="textBox-square text-center" disabled>
+                    <span class=" padding-left-right-normal "> + </span>
+                    <input id="num2" type="text" value="5" class="textBox-square text-center" disabled>
+                    <span class=" padding-left-right-normal "> = </span>
+                    <input id="num3" type="number" value="" class="textBox-square-answer text-center">
+                    <button type="button" class="margin-left-20px text-box-shuaxing ">刷新</button>
+                </div>
+
+            </div>
+            <div class=" form-group flex-layout flex-direction-row flex-wrap-nowrap ">
+                <div class="flex-item-2">
+
+                </div>
+                <div class="flex-item-8 margin-left-30px">
+                    <button type="submit" class=" form-submit form-submit-info" style=" width:350px;">立即登陆</button>
+                </div>
+            </div>
+            <div class="flex-layout margin-15-down">
+                <div class="flex-item-2">
+                </div>
+                <div class="flex-item-8 margin-left-30px float-layout padding-left-10px">
+                    <a href="#"> 忘记密码 / 修改密码</a>
+                </div>
+            </div>
+        }
+    </div>
+        @{
+            if(ViewBag.isLogin)
+            {
+                <div class="flex-layout panel-warnning ">
+                    <span class="waring-font">你已经登陆了！再次登陆将会退出当前账号,可以点击直接登陆往期账号！</span>
+                    <button class="btn-danger" style=" padding:2px;letter-spacing:0px; padding-left:8px;padding-right:8px;">直接登陆</button>
+                </div>
+            }
+        }
+
+    <div class="mask" data-mask-target="#mask-info">
+    </div>
+    <div id="mask-info" class=" mask-content">
+        <div class="mask-module-title">
+            消息提示！
+        </div>
+        <div class="mask-module-content">
+            请回答问题！
+
+        </div>
+        <div class="mask-module-close">
+            <button class=" btn btn-danger layout-image-center"> 立即关闭</button>
+        </div>
+    </div>
+    <div>
+        <div class="main text-center font-color-grey-more position-fixed" style="bottom: 0px;left: 0px; width: 100%;">
+            <small>© All Right Reserved . 四川师范大学计算机科学学院 版权所有 版本号1.0.0.2018.9</small>
+        </div>
+    </div>
+</body>
+<script>
+    function getRandom() {
+        let rand = Math.round(Math.random() * 20);
+        let rand2 = Math.round(Math.random() * 20);
+        $('#num1').val(rand);
+        $('#num2').val(rand2);
+    }
+    function onMask(title, content) {
+        var target = $(".mask").css("display", "block").attr('data-mask-target');
+        $(target).css("display", "block");
+        $(`${target} > .mask-module-title`).text(title);
+        $(`${target} > .mask-module-content`).text(content);
+    }
+
+    getRandom();
+    $(function () {
+        $('.text-box-shuaxing').on('click', null, null, getRandom);
+        $('button[type="submit"]').on('click', null, null, function (jqEvent) {
+            let UserName = parseInt($('#num1').val());
+            let UserPassword = parseInt($('#num2').val());
+            let result = UserName + UserPassword;
+            let valnum3 = $('#num3').val();
+
+            if (valnum3 == "" || valnum3 == null) {
+                onMask("温馨提示", "请回答这种小学生题目！");
+                jqEvent.preventDefault();
+                return;
+            }
+            if (result == parseInt(valnum3)) {
+
+            } else {
+                onMask("气氛提示", "小学生的题目都不会！ 你还是一个大学生");
+                jqEvent.preventDefault();
+            }
+
+        })
+    })
+</script>
+</html>
