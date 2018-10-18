@@ -7,8 +7,8 @@ namespace LabExam.Map
 {
     public enum UserType
     {
-        Viewer =10,
-        Teacher =20,
-        Administrator =40
+        Anonymous = 10,
+        Student =20,
+        Principal = 40
     }
 }

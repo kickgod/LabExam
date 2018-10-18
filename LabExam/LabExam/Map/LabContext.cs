@@ -33,6 +33,11 @@ namespace LabExam.Map
             }
         }
 
+        public DbSet<UserLoginRecord> UserLoginRecords { get; set; }               // 记录用户登录信息
+
+        public DbSet<StudentOperationLog> StudentOperationLogs { get; set; }       // 学生操作信息表
+
+        public DbSet<AdministratorOperationLog> AdministratorOperationLogs { get; set; } //管理员操作信息
 
         public DbSet<ExamQuestionChoice> ExamQuestionChoices { get; set; }          //选择题
         public DbSet<ExamQuestionJudgmental> ExamQuestionJudgmentals { get; set; }  //判断题
@@ -44,7 +49,7 @@ namespace LabExam.Map
         public DbSet<PaperJudgmentSet> PaperJudgmentSets { get; set; }       // 试卷 判断题
         public DbSet<PaperSubjectiveSet> PaperSubjectiveSets { get; set; }   // 试卷 主观题
 
-        public DbSet<UseSuggestion> UseSuggestions { get; set; }             // 用户建议投诉表
+        public DbSet<UserSuggestion> UserSuggestions { get; set; }             // 用户建议投诉表
         public DbSet<StudentApplyForReExamination> StudentsApplyForReExaminations { get; set; }            // 学生申请重考表
 
         public DbSet<StudentApplyForNotTakeExamination> StudentApplyForNotTakeExaminations { get; set; }   // 学生申请不考试

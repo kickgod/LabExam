@@ -1,33 +1,352 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "实验室安全教育在线-首页";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
-
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <div class="jumbotron-content">
+        <h1 class="title">
+            Sichuan Normal University Laboratory Safety Examination Online
+            <br>
+            <small>四川师范大学实验室安全教育与考试在线</small>
+        </h1>
+        <button id="leftTime" class="btn btn-default">剩余时间：加载中...</button>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+<div class="main exam-notice">
+    <div>
+        <figure>
+            <img src="../Resources/Img/stati.png" class="Img-center-rotation" alt="图标" />
+            <figcaption>
+                <h3 class="text-center text-title-little ">联合与秩序</h3>
+                <small>
+                    请各位按照学校安排参加学习,进行考试。考试说明及其注意事项以本网站考试
+                    说明为准！
+                </small>
+            </figcaption>
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="../Resources/Img/notice.png" alt="图标" />
+            <figcaption>
+                <h3 class="text-center text-title-little">注意事项</h3>
+                <small>
+                    请在进入考试之前阅读考试说明,如果对于考试使用有所疑问,请查看
+                    使用帮助页面,或联系网站维护技术人员,联系方式在下面
+                </small>
+            </figcaption>
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="../Resources/Img/calt.png" alt="图标" />
+            <figcaption>
+                <h3 class="text-center text-title-little">在线考试</h3>
+                <small>
+                    请各位将实验室安全考试慎重对待,重视实验室安全,在大学同学们会经常和实验室打交道,
+                    熟悉实验室安全事项是你们的基本素养
+                </small>
+            </figcaption>
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="../Resources/Img/run.png" alt="图标" />
+            <figcaption>
+                <h3 class="text-center text-title-little">紧急通知</h3>
+                <small>
+                    暂无紧急通知事项！ 请登录的时候注意查看此栏！
+                </small>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+<div class="margin-top-25 main">
+    <br />
+    <span class="title-module-left">考试信息公布</span>
+    <p class="dotted-line"></p>
+</div>
+<div class="main flex-layout margin-bottom-35px">
+    <div id="chart1" class="margin-left-right-normal flex-item-1">
+        <div id="Chart-Normal-Coming" class="chart margin-bottom-10px">
+
+        </div>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <small>反应最近7天的系统登录情况,展示登陆和考试人数变化</small>
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div id="chart2" class="margin-left-right-normal flex-item-1">
+        <div id="Chart-Exam-info" class="chart margin-bottom-10px">
+
+        </div>
+        <p>
+            <small>安全考试系统学生考试学习详情展示！[数据每天刷新]</small>
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div id="chart3" class="margin-left-right-normal flex-item-1">
+        <div id="Chart-Score-info" class="chart  margin-bottom-10px">
+
+        </div>
+        <p>
+            <small>考试成绩分布散点图</small>
+        </p>
     </div>
 </div>
 
-@ViewBag.bag
+
+<script src="~/Scripts/ECharts/echarts.min.js"></script>
+<script src="~/Scripts/ECharts/macarons.js"></script>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $(".btn-default:eq(0)").click(function () {
+            alert("当前时间");
+        })
+    });
+    /* Echarts 图表 */
+    var option_accesee = {
+        legend: {
+            data: ['登陆人数', '考试人数'],
+            top: 10,
+            align: 'right'
+        },
+
+        title: {
+            x: 'left',
+            text: '访问信息',
+            subtext: 'Access information',
+            textStyle: {
+                fontSize: 16
+            }
+        },
+        toolbox: {
+            orient: "horizontal",
+            itemSize: "16",
+            itemGap: 20,
+            feature: {
+                saveAsImage: {
+                    name: "系统访问信息"
+                },
+                restore: {}
+            }
+        },
+        grid: {
+            top: 80,
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['11/5', '11/6', '11/7', '11/8', '11/9', '11/10', '11/11'],
+                axisTick: {
+                    alignWithLabel: true
+                },
+                boundaryGap: true
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+            }
+        ],
+        series: [
+            {
+                name: '登陆人数',
+                type: 'bar',
+                data: [110, 552, 400, 1334, 790, 430, 820]
+            },
+            {
+                name: '考试人数',
+                type: 'bar',
+                data: [150, 122, 210, 334, 390, 330, 420]
+            }
+        ]
+    };
+    var chart = echarts.init(document.getElementById('Chart-Normal-Coming'), 'macarons');
+    chart.setOption(option_accesee);
+
+    var option_exam = {
+        title: {
+            text: '安全考试进行情况',
+            subtext: "Safety test situation display",
+            x: 'center',
+            textStyle: {
+                fontSize: 16
+            }
+        },
+        toolbox: {
+            orient: "horizontal",
+            itemSize: "16",
+            itemGap: 20,
+            feature: {
+                saveAsImage: {
+                    name: "安全考试进行情况"
+                },
+                restore: {},
+
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['通过考试', '尚未参加', '尚未考试', '考而未过', '学完未考']
+        },
+        series: [
+            {
+                name: '情况',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    { value: 335, name: '通过考试' },
+                    { value: 310, name: '尚未参加' },
+                    { value: 234, name: '尚未考试' },
+                    { value: 135, name: '考而未过' },
+                    { value: 1548, name: '学完未考' }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    var app = {}
+    app.currentIndex = -1;
+
+    setInterval(function () {
+        var dataLen = option_exam.series[0].data.length;
+        // 取消之前高亮的图形
+        myChart.dispatchAction({
+            type: 'downplay',
+            seriesIndex: 0,
+            dataIndex: app.currentIndex
+        });
+        app.currentIndex = (app.currentIndex + 1) % dataLen;
+        // 高亮当前图形
+        myChart.dispatchAction({
+            type: 'highlight',
+            seriesIndex: 0,
+            dataIndex: app.currentIndex
+        });
+        // 显示 tooltip
+        myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: app.currentIndex
+        });
+    }, 2500);
+    var myChart = echarts.init(document.getElementById('Chart-Exam-info'), 'macarons');
+    myChart.setOption(option_exam);
+
+    var option_score = {
+        title: {
+            text: "考试成绩分布",
+            subtext: "Test score distribution",
+            textStyle: {
+                fontSize: 16
+            }
+
+        },
+        toolbox: {
+            orient: "horizontal",
+            itemSize: "16",
+            itemGap: 20,
+            feature: {
+                saveAsImage: {
+                    name: "学生考试成绩分布"
+                },
+                restore: {},
+            }
+        },
+        grid: {
+            top: 85,
+            right: 45,
+            height: "55%"
+        },
+        xAxis: {
+            name: "分数"
+        },
+        yAxis: {
+            name: "人数"
+        },
+        tooltip: {
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        series: [{
+            symbolSize: 5,
+            data: [
+                [60.0, 75],
+                [13.0, 7.58],
+                [9.0, 8.81],
+                [11.0, 8.33],
+                [14.0, 9.96],
+                [6.0, 7.24],
+                [4.0, 4.26],
+                [12.0, 10.84],
+                [7.0, 4.82],
+                [80, 75],
+                [81, 152],
+                [82, 75],
+                [83, 89],
+                [84, 115],
+                [85, 75],
+                [86, 95],
+                [87, 80],
+                [88, 0],
+                [89, 77],
+                [75, 250],
+                [76, 334]
+                [99, 5]
+            ],
+            type: 'scatter',
+            tooltip: {
+                padding: 10,
+                formatter: function (param) {
+                    console.log(param);
+                    return `成绩情况<br/>分数:${param.data[0]} <br/> 人数:${param.data[1]}`
+                },
+                textStyle: {
+                    fontSize: 12,
+                }
+            }
+        }]
+    };
+    var myScoreChart = echarts.init(document.getElementById('Chart-Score-info'), 'macarons');
+    myScoreChart.setOption(option_score);
+    /*计算剩余时间*/
+    "use strict"
+    function calLeftTime() {
+        let getJsonStopDate = "2018/11/15 12:20";
+        let stopTime = new Date(getJsonStopDate);
+        let timeNow = new Date();
+        //判断是否停止考试
+        if (stopTime < timeNow) {
+            /* 如果停止考试 */
+            $('#leftTime').text("今年实验室安全考试已经结束");
+        } else {
+            /*未停止考试*/
+            let leftTimeSecondCount = (stopTime - timeNow) / 1000; //时间剩余秒
+            let leftday = parseInt(leftTimeSecondCount / (3600 * 24));
+            let leftHour = parseInt((leftTimeSecondCount - leftday * (3600 * 24)) / 3600);
+            let leftMiutes = parseInt((leftTimeSecondCount - leftday * (3600 * 24) - leftHour * 3600) / 60);
+            let leftSecond = parseInt(leftTimeSecondCount % 60);
+            $('#leftTime').text(`剩余时间:${leftday}天${leftHour}时${leftMiutes}分${leftSecond}秒`);
+        }
+    }
+    window.setInterval(calLeftTime, 1000);
+</script>
+}

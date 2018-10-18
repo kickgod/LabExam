@@ -171,9 +171,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProfessionsController.cs" />
-    <Compile Include="IServices\IEncryptionData.cs" />
-    <Compile Include="IServices\IPrincipalService.cs" />
+    <Compile Include="Controllers\SystemConfigurationController.cs" />
+    <Compile Include="Filters\AccountFilter.cs" />
+    <Compile Include="IServices\IEncryptionDataService.cs" />
+    <Compile Include="IServices\IUserAccountService.cs" />
+    <Compile Include="IServices\IUserSuggestionService.cs" />
     <Compile Include="Map\ExaminationPaperStatus.cs" />
     <Compile Include="Map\ExamQuestionStatus.cs" />
     <Compile Include="Map\ExamQuestionType.cs" />
@@ -209,8 +211,30 @@
     <Compile Include="Migrations\201809081315473_AlterSomeThing.Designer.cs">
       <DependentUpon>201809081315473_AlterSomeThing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810150246306_ChangeManyTables.cs" />
+    <Compile Include="Migrations\201810150246306_ChangeManyTables.Designer.cs">
+      <DependentUpon>201810150246306_ChangeManyTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810150250081_LittleChange.cs" />
+    <Compile Include="Migrations\201810150250081_LittleChange.Designer.cs">
+      <DependentUpon>201810150250081_LittleChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810150302508_LittleChange001.cs" />
+    <Compile Include="Migrations\201810150302508_LittleChange001.Designer.cs">
+      <DependentUpon>201810150302508_LittleChange001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810150557501_ChangeTables.cs" />
+    <Compile Include="Migrations\201810150557501_ChangeTables.Designer.cs">
+      <DependentUpon>201810150557501_ChangeTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810180142184_UserChangeTable.cs" />
+    <Compile Include="Migrations\201810180142184_UserChangeTable.Designer.cs">
+      <DependentUpon>201810180142184_UserChangeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdministratorOperationLog.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\DataModel\UserAccout.cs" />
     <Compile Include="Models\ExaminationPaper.cs" />
     <Compile Include="Models\ExamQuestionChoice.cs" />
     <Compile Include="Models\ExamQuestionJudgmental.cs" />
@@ -228,29 +252,80 @@
     <Compile Include="Models\ModuleConfigure.cs" />
     <Compile Include="Models\StudentApplyForNotTakeExamination.cs" />
     <Compile Include="Models\StudentApplyForReExamination.cs" />
+    <Compile Include="Models\StudentOperationLog.cs" />
     <Compile Include="Models\SystemCofigure.cs" />
-    <Compile Include="Models\UseSuggestion.cs" />
+    <Compile Include="Models\UserLoginRecord.cs" />
+    <Compile Include="Models\UserSuggestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EncryptionDataByDES.cs" />
     <Compile Include="Services\EncryptionDataByMd5.cs" />
-    <Compile Include="Services\PrincipalService.cs" />
+    <Compile Include="Services\EncryptionDataService.cs" />
+    <Compile Include="Services\UserAccountService.cs" />
+    <Compile Include="Services\UserSuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\labEntry.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Resources\bc\huisebc.png" />
+    <Content Include="Resources\CourceImg\JavascriptZj.png" />
+    <Content Include="Resources\Image\Icon\accountIcon_email.png" />
+    <Content Include="Resources\Image\Icon\accountIcon_emali_t.png" />
+    <Content Include="Resources\Image\Icon\accountIcon_phone.png" />
+    <Content Include="Resources\Image\Icon\accountIcon_phone_o.png" />
+    <Content Include="Resources\Image\Icon\accountIcon_search.png" />
+    <Content Include="Resources\Image\Icon\account_dun.png" />
+    <Content Include="Resources\Image\Icon\IconExam.png" />
+    <Content Include="Resources\Image\Icon\Ok.png" />
+    <Content Include="Resources\Image\Icon\Pageicon.png" />
+    <Content Include="Resources\Image\Icon\PageIconOnline.png" />
+    <Content Include="Resources\Image\Icon\shuqian_heng_lan.png" />
+    <Content Include="Resources\Image\Icon\shuqian_xie.png" />
+    <Content Include="Resources\Image\Icon\shuqian_xie_heng_hong.png" />
+    <Content Include="Resources\Image\Icon\shuqian_xie_hong_lv.png" />
+    <Content Include="Resources\Image\Icon\student_nan.png" />
+    <Content Include="Resources\Image\Icon\student_nv.png" />
+    <Content Include="Resources\Img\calo.png" />
+    <Content Include="Resources\Img\calt.png" />
+    <Content Include="Resources\Img\exam.png" />
+    <Content Include="Resources\Img\Grid.png" />
+    <Content Include="Resources\Img\notice.png" />
+    <Content Include="Resources\Img\run.png" />
+    <Content Include="Resources\Img\stati.png" />
+    <Content Include="Resources\LoginIcon\ID_Hongse.png" />
+    <Content Include="Resources\LoginIcon\ID_lanse.png" />
+    <Content Include="Resources\LoginIcon\ID_No_HongSe.png" />
+    <Content Include="Resources\LoginIcon\ID_NO_Lanse.png" />
+    <Content Include="Resources\LoginIcon\LengXing_hongse.png" />
+    <Content Include="Resources\LoginIcon\LengXing_huangse.png" />
+    <Content Include="Resources\LoginIcon\LengXing_lanse.png" />
+    <Content Include="Resources\LoginIcon\LengXing_lanseShen.png" />
+    <Content Include="Resources\LoginIcon\LengXing_lansewuti.png" />
+    <Content Include="Resources\LoginIcon\LengXing_lvseshiti.png" />
+    <Content Include="Resources\LoginIcon\LengXing_lvsexuti.png" />
+    <Content Include="Resources\LoginIcon\password.png" />
+    <Content Include="Resources\PagesStudent\Icon\teacherIcon.png" />
+    <Content Include="Resources\VedioList\2015419433498.mp4" />
+    <Content Include="Resources\VedioList\2015430159923.mp4" />
+    <Content Include="Scripts\App\labLayout.js" />
+    <Content Include="Scripts\App\video.min.js" />
+    <Content Include="Scripts\App\videojs-ie8.min.js" />
+    <Content Include="Scripts\App\zh-CN.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\JsonData\Modules.json" />
+    <Content Include="Scripts\App\zh-CN.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\ECharts\echarts.min.js" />
+    <Content Include="Scripts\ECharts\macarons.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -272,20 +347,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\_LayoutHomePage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Professions\Create.cshtml" />
-    <Content Include="Views\Professions\Delete.cshtml" />
-    <Content Include="Views\Professions\Details.cshtml" />
-    <Content Include="Views\Professions\Edit.cshtml" />
-    <Content Include="Views\Professions\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageHomeOther.cshtml" />
+    <Content Include="Views\Home\Explanation.cshtml" />
+    <Content Include="Views\Home\UserHelping.cshtml" />
+    <Content Include="Views\Home\UserComplaint.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\SystemConfiguration\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\HaveLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
     <Folder Include="Models\Views\" />
+    <Folder Include="UserConfig\" />
     <Folder Include="Validation\" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +392,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809081315473_AlterSomeThing.resx">
       <DependentUpon>201809081315473_AlterSomeThing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150246306_ChangeManyTables.resx">
+      <DependentUpon>201810150246306_ChangeManyTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150250081_LittleChange.resx">
+      <DependentUpon>201810150250081_LittleChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150302508_LittleChange001.resx">
+      <DependentUpon>201810150302508_LittleChange001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150557501_ChangeTables.resx">
+      <DependentUpon>201810150557501_ChangeTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180142184_UserChangeTable.resx">
+      <DependentUpon>201810180142184_UserChangeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

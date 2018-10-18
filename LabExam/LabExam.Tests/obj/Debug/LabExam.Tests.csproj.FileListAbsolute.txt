@@ -1,0 +1,2 @@
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam.Tests\obj\Debug\LabExam.Tests.csprojAssemblyReference.cache
+D:\Users\Kick\Source\Repos\LabExam\LabExam\LabExam.Tests\obj\Debug\LabExam.Tests.csproj.CoreCompileInputs.cache

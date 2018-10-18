@@ -12,14 +12,14 @@ namespace LabExam.Services
     ///  <Author> 2016110418 蒋星 </Author>
     ///  <LastAlterTimeAndAuthor>  </LastAlterTimeAndAuthor>
     /// </summary>
-    public class EncryptionDataByMd5 : IEncryptionData
+    public class EncryptionDataByMd5 : IEncryptionDataService
     {
         public string Encode(string Data)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] palindata = Encoding.Default.GetBytes(Data);//将要加密的字符串转换为字节数组
+            byte[] palindata = Encoding.Default.GetBytes(Data);   //将要加密的字符串转换为字节数组
             byte[] encryptdata = md5.ComputeHash(palindata);      //将字符串加密后也转换为字符数组
-            return Convert.ToBase64String(encryptdata);//将加密后的字节数组转换为加密字符串
+            return Convert.ToBase64String(encryptdata);           //将加密后的字节数组转换为加密字符串
         }
     }
 }

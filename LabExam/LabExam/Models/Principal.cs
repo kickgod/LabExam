@@ -25,9 +25,11 @@ namespace LabExam.Models
         [MaxLength(100)]
         public String Name { get; set; }   //姓名
 
-        public UserType UserType { get; set; }  //枚举：UserType  用户类型
-
         public UserStatus UserStatus { get; set; }  //枚举：UserStatus 用户状态
+
+        [MaxLength(400)]
+        [Required()]
+        public String UserConfige { get; set; }  //用户配置文件地址
 
         public ICollection<Resource> Resources { get; set; }  //负责人上传的资料
 
