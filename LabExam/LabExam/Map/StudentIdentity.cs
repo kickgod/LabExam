@@ -15,7 +15,7 @@ namespace LabExam.Map
     /// </summary>
     public enum StudentIdentity
     {
-        Undergraduate=2,
-        Postgraduate=4
+        Undergraduate=2,//大学本科
+        Postgraduate=4 //研究室
     }
 }

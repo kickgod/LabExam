@@ -28,9 +28,15 @@ namespace LabExam
             bundles.Add(new StyleBundle("~/Content/Mycss").Include(
                 "~/Content/css/labEntry.min.css"));
 
+            bundles.Add(new StyleBundle("~/Content/AdminEntry").Include(
+    "~/Content/css/AdminEntry.min.css"));
+
             //主页需要的js文件
             bundles.Add(new ScriptBundle("~/bundles/myScript").Include(
                 "~/Scripts/App/labLayout.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminScript").Include(
+                "~/Scripts/App/adminEntry.js"));
         }
     }
 }

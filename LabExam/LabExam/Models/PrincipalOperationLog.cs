@@ -11,7 +11,9 @@ namespace LabExam.Models
     public class PrincipalOperationLog
     {
         [Key]
-        public int PrincipalLogID { get; set; }  //主键
+        public long PrincipalOperationLogID { get; set; }//主键
+        [MaxLength(100)]
+        public String PrincipalID { get; set; }  //操作人
         [MaxLength(15)]
         public String OperationCode { get; set; }  //增删改查
         [MaxLength(50)]

@@ -2,6 +2,7 @@
 using LabExam.Map;
 using LabExam.Models;
 using LabExam.Models.DataModel;
+using LitJson;
 using Ninject.Activation;
 using System;
 using System.Collections.Generic;
@@ -15,24 +16,79 @@ namespace LabExam.Services
     {
         private LabContext db = new LabContext();
 
-        /* 修改用户密码 */
-        public bool ChangeUserPassword(UserAccout account, UserType userType)
+        /// <summary>
+        ///  修改用户密码
+        /// </summary>
+        /// <param name="account">账户</param>
+        /// <param name="userType">用户类型</param>
+        /// <returns>0</returns>
+        public bool ChangeUserPassword(UserAccout account, UserType userType, IEncryptionDataService service)
         {
             if (userType == UserType.Principal) {
-                
+                Principal admin = db.Principals.Find(account.UserAccoutID);
+                if(admin != null)
+                {
+                    admin.Password = service.Encode(account.UserPassword);
+                }
+                else
+                {
+                    throw new Exception("UserAccountService：管理员账号不存在");
+                }
+
+            }else if(userType == UserType.Student)
+            {
+                Student stu = db.Students.Find(account.UserAccoutID);
+                if (stu != null)
+                {
+                    stu.Passwrod = service.Encode(account.UserPassword);
+                    if (!db.ChangeTracker.HasChanges())
+                    {
+                        return true;
+
+                    }
+                    else if (db.SaveChanges() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    throw new Exception("UserAccountService：学生账号不存在");
+                }
             }
-            throw new NotImplementedException();
+            return false;
         }
 
-        public  Boolean StudentIsRight()
+        /// <summary>
+        ///  判断用户能否登录
+        /// </summary>
+        /// <param name="id">账户</param>
+        /// <param name="pwd">密码</param>
+        /// <param name="type">用户类型</param>
+        /// <returns>是否账号密码都正确</returns>
+        public Boolean Login(String id, String pwd, UserType type, IEncryptionDataService service)
         {
-            throw new NotImplementedException();
+            if(type == UserType.Student)
+            {
+                var passwordDecode = service.Encode(pwd);
+                int count = db.Students.Where(stu => stu.StudentID == id && stu.Passwrod == passwordDecode).Count();
+                return count == 1;
+            }else if(type == UserType.Principal)
+            {
+                var passwordDecode = service.Encode(pwd);
+                int count = db.Principals.Where(tea => tea.PrincipalID == id && tea.Password == passwordDecode).Count();
+                return count == 1;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public Boolean PrincipalIsRight()
-        {
-            throw new NotImplementedException();
-        }
         public UserType GetUserType(string UserID)
         {
             UserType type = UserType.Anonymous; 
@@ -57,7 +113,6 @@ namespace LabExam.Services
             return db.Principals.Find(UserID) == null ;
         }
 
-
         public bool UserIsLogin()
         {
             HttpContext context = HttpContext.Current;
@@ -69,6 +124,38 @@ namespace LabExam.Services
             {
                 return false;
             }
+        }
+
+        public bool AddLoginRecord(UserLoginRecord record)
+        {
+            if(record == null)
+            {
+                return false;
+            }
+            else
+            {
+                db.UserLoginRecords.Add(record);
+                return db.SaveChanges() == 1;
+            }
+        }
+
+        public bool ConfirmStudentIDNumber(string AccountID, string ID)
+        {
+            int Count = db.Students.Where(val =>val.StudentID == AccountID && val.IDNumber == ID).Count();
+            return Count == 1;
+        }
+
+        public string GetPrincipalByID(string ID)
+        {
+            JsonData pricipal = new JsonData();
+            Principal val =  db.Principals.Find(ID);
+            pricipal["Name"] = val.Name;
+            pricipal["ID"] = val.JobNumber;
+            pricipal["Status"] = (int)val.UserStatus;
+            pricipal["Power"] = "部分权限";
+            pricipal["LoginTime"] = DateTime.Now.ToString();
+            pricipal["OperationCount"] = db.PrincipalOperationLoggs.Where(one => one.PrincipalID == ID).Count();
+            return pricipal.ToJson();
         }
     }
 }

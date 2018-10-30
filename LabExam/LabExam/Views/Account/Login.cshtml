@@ -106,7 +106,7 @@
                 <div class="flex-item-2">
                 </div>
                 <div class="flex-item-8 margin-left-30px float-layout padding-left-10px">
-                    <a href="#"> 忘记密码 / 修改密码</a>
+                    <a href="/Account/ChangePassword"> 忘记密码 / 修改密码</a>
                 </div>
             </div>
         }
@@ -116,7 +116,7 @@
             {
                 <div class="flex-layout panel-warnning ">
                     <span class="waring-font">你已经登陆了！再次登陆将会退出当前账号,可以点击直接登陆往期账号！</span>
-                    <button class="btn-danger" style=" padding:2px;letter-spacing:0px; padding-left:8px;padding-right:8px;">直接登陆</button>
+                    <button id="LoginNow" class="btn-danger" style=" padding:2px;letter-spacing:0px; padding-left:8px;padding-right:8px;">直接登陆</button>
                 </div>
             }
         }
@@ -153,7 +153,11 @@
         $(target).css("display", "block");
         $(`${target} > .mask-module-title`).text(title);
         $(`${target} > .mask-module-content`).text(content);
-    }
+    };
+
+    $('#LoginNow').click(function (jqEvent) {
+        window.location.href = "/Account/HaveLoginToUserPage";
+    });
 
     getRandom();
     $(function () {
@@ -169,13 +173,37 @@
                 jqEvent.preventDefault();
                 return;
             }
-            if (result == parseInt(valnum3)) {
 
+            if (result == parseInt(valnum3)) {
+                $.ajax({
+                    url: "/Account/IsCanLogin",
+                    method: "post",
+                    dataType: "json",
+                    async: false,
+                    data: {
+                        "UserAccoutID": $('#UserAccoutID').val(),
+                        "UserPassword": $('#UserPassword').val() 
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        if (data.Type == "Anonymous") {
+                            onMask("严重警告", "你的账号不存在,无法登录！");
+                            jqEvent.preventDefault();
+                        } else {
+                            if (data.isLogin == false) {
+                                onMask("温馨提示", "你的密码错误！");
+                                jqEvent.preventDefault();
+                            }
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
             } else {
                 onMask("气氛提示", "小学生的题目都不会！ 你还是一个大学生");
                 jqEvent.preventDefault();
             }
-
         })
     })
 </script>

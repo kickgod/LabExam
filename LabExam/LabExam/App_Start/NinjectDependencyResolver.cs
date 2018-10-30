@@ -29,7 +29,7 @@ namespace LabExam.App_Start
         private void AddBindings()
         {
             kernel.Bind<IUserAccountService>().To<UserAccountService>().InTransientScope(); //配置接口
-            kernel.Bind<IEncryptionDataService>().To<EncryptionDataService>().InTransientScope(); //配置接口
+            kernel.Bind<IEncryptionDataService>().To<EncryptionDataByMd5Service>().InTransientScope(); //配置接口
             kernel.Bind<IUserSuggestionService>().To<UserSuggestionService>().InTransientScope();
         }
     }

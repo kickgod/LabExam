@@ -171,8 +171,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SystemConfigurationController.cs" />
-    <Compile Include="Filters\AccountFilter.cs" />
+    <Compile Include="Filters\PrincipalAttribute.cs" />
+    <Compile Include="Filters\StudentAttribute.cs" />
     <Compile Include="IServices\IEncryptionDataService.cs" />
     <Compile Include="IServices\IUserAccountService.cs" />
     <Compile Include="IServices\IUserSuggestionService.cs" />
@@ -235,6 +237,18 @@
     <Compile Include="Migrations\201810181314074_ChangeTableName.Designer.cs">
       <DependentUpon>201810181314074_ChangeTableName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810231351288_AlterRecord.cs" />
+    <Compile Include="Migrations\201810231351288_AlterRecord.Designer.cs">
+      <DependentUpon>201810231351288_AlterRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810250601406_AlterKey.cs" />
+    <Compile Include="Migrations\201810250601406_AlterKey.Designer.cs">
+      <DependentUpon>201810250601406_AlterKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810250607270_AlterColumnTypeOfPrincalLog.cs" />
+    <Compile Include="Migrations\201810250607270_AlterColumnTypeOfPrincalLog.Designer.cs">
+      <DependentUpon>201810250607270_AlterColumnTypeOfPrincalLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PrincipalOperationLog.cs" />
     <Compile Include="Models\Course.cs" />
@@ -261,7 +275,7 @@
     <Compile Include="Models\UserLoginRecord.cs" />
     <Compile Include="Models\UserSuggestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EncryptionDataByMd5.cs" />
+    <Compile Include="Services\EncryptionDataByMd5Service.cs" />
     <Compile Include="Services\EncryptionDataService.cs" />
     <Compile Include="Services\UserAccountService.cs" />
     <Compile Include="Services\UserSuggestionService.cs" />
@@ -271,7 +285,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\AdminEntry.min.css" />
     <Content Include="Content\css\labEntry.min.css" />
+    <Content Include="Content\css\stuEntry.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -316,7 +332,10 @@
     <Content Include="Resources\PagesStudent\Icon\teacherIcon.png" />
     <Content Include="Resources\VedioList\2015419433498.mp4" />
     <Content Include="Resources\VedioList\2015430159923.mp4" />
+    <Content Include="Scripts\App\additional-methods.min.js" />
+    <Content Include="Scripts\App\adminEntry.js" />
     <Content Include="Scripts\App\labLayout.js" />
+    <Content Include="Scripts\App\messages_zh.js" />
     <Content Include="Scripts\App\video.min.js" />
     <Content Include="Scripts\App\videojs-ie8.min.js" />
     <Content Include="Scripts\App\zh-CN.js" />
@@ -358,10 +377,11 @@
     <Content Include="Views\Home\UserHelping.cshtml" />
     <Content Include="Views\Home\UserComplaint.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\SystemConfiguration\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\HaveLogin.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackstage.cshtml" />
+    <Content Include="Views\SystemConfiguration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -415,6 +435,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810181314074_ChangeTableName.resx">
       <DependentUpon>201810181314074_ChangeTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810231351288_AlterRecord.resx">
+      <DependentUpon>201810231351288_AlterRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810250601406_AlterKey.resx">
+      <DependentUpon>201810250601406_AlterKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810250607270_AlterColumnTypeOfPrincalLog.resx">
+      <DependentUpon>201810250607270_AlterColumnTypeOfPrincalLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,6 +17,7 @@ namespace LabExam.Models
     public class UserLoginRecord
     {
         [Key]
+        public long UserLoginRecordID { get; set; }
         public string UserID { get; set; } //登陆ID 没有外键 只是做记录
 
         public DateTime LoginTime { get; set; } //登陆时间
